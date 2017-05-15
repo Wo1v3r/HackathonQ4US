@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try{
+            Intent intent = getIntent();
+        }
+        catch(Exception ex){Log.d(TAG,ex.getMessage());}
+
+
 //        manager1 = MultiSenseAtomManager.getInstance(this);
 //        manager2 = MultiSenseAtomManager.getInstance(this);
 //
