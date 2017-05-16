@@ -31,6 +31,11 @@ import java.util.UUID;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * The Main activity which does a couple of things:
+ * -- Looks for Bluetooth signals from our Arduino Devices
+ * --Starts a game between the two when they are ready
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     @BindView(R.id.startButton) Button startButton;
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     // SPP UUID service
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-    // MAC-address of Bluetooth module (you must edit this line)
+    // MAC-address of Bluetooth module
     private static String address1 = "00:06:66:43:45:7F";
     private static String address2 = "98:D3:31:20:B6:37";
 
@@ -83,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception ex) {
             Log.d(TAG, ex.getMessage());
         }
+        /**
+         * A Handler for a Message transmitted to the android machine to parse the bluetooth string
+         */
         h = new Handler() {
             public void handleMessage(android.os.Message msg) {
                 switch (msg.what) {
@@ -135,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
 //
     }
 
+    /**
+     * When resuming after the creation, trying to connect to the devices which
+     * Invokes the handler later on
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -193,25 +205,34 @@ public class MainActivity extends AppCompatActivity {
 
         mConnectedThread2 = new ConnectedThread(btSocket2);
         mConnectedThread2.start();
+
+        /**
+         * Synchronously writing a connect message to the Arduino Devices
+         */
         synchronized (mConnectedThread1)  {
 
-            mConnectedThread1.write("connect\n");
-        }
-
-        synchronized (mConnectedThread2){
             mConnectedThread2.write("connect\n");
         }
-//        new CountDownTimer(2200, 1000){
-//            public void onTick(long millisUntilFinished){
-//                ;
-//            }
-//            public  void onFinish(){
-//
-//                startButton.setEnabled(true);
-//            }
-//        }.start();
+        new CountDownTimer(2200, 1000){
+            public void onTick(long millisUntilFinished){
+                ;
+            }
+            public  void onFinish(){
+
+                startButton.setEnabled(true);
+            }
+        }.start();
+        synchronized (mConnectedThread2){
+            mConnectedThread1.write("connect\n");
+
+        }
+
 
     }
+
+    /**
+     * On a pause we will close the sockets to stop the transmissions
+     */
     @Override
     public void onPause() {
         super.onPause();
@@ -230,6 +251,10 @@ public class MainActivity extends AppCompatActivity {
             errorExit("Fatal Error", "In onPause() and failed to close socket." + e2.getMessage() + ".");
         }
     }
+
+    /**
+     * Checks the current state of the bluetooth device
+     */
     private void checkBTState() {
         // Check for Bluetooth support and then check to make sure it is turned on
         // Emulator doesn't support Bluetooth and will return null
@@ -245,6 +270,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     * Exits on error and shows a message
+     * @param title
+     * @param message
+     */
     private void errorExit(String title, String message) {
         Toast.makeText(getBaseContext(), title + " - " + message, Toast.LENGTH_LONG).show();
         finish();
@@ -269,6 +300,9 @@ public class MainActivity extends AppCompatActivity {
             mmOutStream = tmpOut;
         }
         @Override
+        /**
+         * Stores the input stream from the devices
+         */
         public void run() {
             byte[] buffer = new byte[256];  // buffer store for the stream
             int bytes; // bytes returned from read()

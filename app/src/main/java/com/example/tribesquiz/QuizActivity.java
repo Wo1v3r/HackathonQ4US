@@ -14,6 +14,9 @@ import java.util.Timer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * Quiz activity which runs a quiz for the players
+ */
 public class QuizActivity extends AppCompatActivity {
     private static final String TAG = "QuizActivity";
     private static final String SCORE = "QuizActivity.score";
@@ -43,6 +46,10 @@ public class QuizActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Updates views with the results based on the answer
+     * @param correct
+     */
     public void showAnswerResults(boolean correct){
         if (correct) {
 
@@ -73,15 +80,25 @@ public class QuizActivity extends AppCompatActivity {
             }.start();
     }
 
-
+    /**
+     * Click handler for the YES Button
+     * @param view
+     */
     public void yesClick(View view){
         showAnswerResults(game.checkAnswer(1));
     }
 
+    /**
+     * Click handler for the NO Button
+     * @param view
+     */
     public void noClick(View view){
         showAnswerResults(game.checkAnswer(0));
     }
 
+    /**
+     * Loads the next question and displays it on the view
+     */
     public void loadNextQuestion(){
 
         if (game.getCurrentQuestionNum() >= game.getTotalquestions()) endGame();// end game
@@ -93,7 +110,9 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Ends the game and creates an intent to start the EndActivity
+     */
     public void endGame(){
         Intent intent = new Intent(this,EndActivity.class);
         intent.putExtra(SCORE,game.getCorrectAnswers());
