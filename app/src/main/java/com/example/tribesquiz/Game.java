@@ -22,16 +22,16 @@ public class Game {
         questionsList.add("האם פלאפל הוא מאכל יהודי");
         answersList[0] = 0;
 
-        questionsList.add("האם ג'חנון הוא מאכל תימני");
+        questionsList.add("האלוהים שהמוסלמים עובדים זהים ליהודים ולנוצרים");
         answersList[1] = 1;
 
-        questionsList.add("האם ערבים חייבים לחבוש כאפייה");
+        questionsList.add("המוסלמים מתפללים לירח");
         answersList[2] = 0;
 
-        questionsList.add("האם ביהדות מתפללים פעם אחת ביום");
-        answersList[3] = 0;
+        questionsList.add("ביהדות יש 4 ימי ראש השנה");
+        answersList[3] = 1;
 
-        questionsList.add("האם ירושלים היא עיר קדושה רק לנצרות");
+        questionsList.add("חילוני הוא אדם אשר לא מאמין באלוהים");
         answersList[4] = 0;
 
     }

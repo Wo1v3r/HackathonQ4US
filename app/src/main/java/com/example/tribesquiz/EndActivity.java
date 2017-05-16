@@ -22,6 +22,7 @@ public class EndActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         score = intent.getIntExtra("QuizActivity.score",0);
         resultsText.setText("עניתם על "+ score +" תשובות נכונה");
+        setTitle("Q4US");
 
         int reward = calculateReward(score);
 

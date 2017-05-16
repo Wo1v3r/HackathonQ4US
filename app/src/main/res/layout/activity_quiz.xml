@@ -10,20 +10,19 @@
         android:id="@+id/questionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="38dp"
         android:text="פלאפל הוא מאכל יהודי"
         android:textAlignment="center"
+        android:textColor="@color/colorAccent"
         android:textDirection="anyRtl"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/trueOrFalseText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionNumberView"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="@string/currentQuestion" />
+        tools:text="@string/currentQuestion"
+        app:layout_constraintHorizontal_bias="0.503"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/noButton"
@@ -31,10 +30,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginTop="52dp"
+        android:background="@color/colorAccent"
+        android:backgroundTint="@color/colorPrimary"
         android:onClick="noClick"
         android:text="לא"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="52dp"
         app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
 
     <Button
@@ -44,10 +46,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:background="@color/colorPrimary"
         android:onClick="yesClick"
         android:text="כן"
+        android:textColor="@color/common_plus_signin_btn_text_dark_default"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="52dp"
         app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
 
     <TextView
@@ -76,15 +80,57 @@
         android:id="@+id/correctAnswersText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="תשובות נכונות 0"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="תשובות נכונות 0"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trueOrFalseText"
+        app:layout_constraintVertical_bias="0.347" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@mipmap/quotes"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/questionNumberView" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/check"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/yesButton"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/yesButton"
+        app:layout_constraintVertical_bias="0.025"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@mipmap/cross"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/noButton"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/noButton"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintHorizontal_bias="0.502"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/trueOrFalseText" />
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintVertical_bias="0.025" />
 
 </android.support.constraint.ConstraintLayout>

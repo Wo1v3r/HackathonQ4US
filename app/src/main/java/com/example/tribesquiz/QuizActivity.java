@@ -31,6 +31,7 @@ public class QuizActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        setTitle("Q4US");
 
         Intent intent = getIntent();
         ButterKnife.bind(this);
