@@ -10,14 +10,19 @@
         android:id="@+id/questionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="38dp"
         android:text="פלאפל הוא מאכל יהודי"
+        android:textAlignment="center"
         android:textDirection="anyRtl"
         android:textSize="24sp"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintBottom_toTopOf="@+id/trueOrFalseText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questionNumberView"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="@string/currentQuestion" />
 
     <Button
@@ -29,7 +34,8 @@
         android:onClick="noClick"
         android:text="לא"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="143dp" />
+        android:layout_marginTop="52dp"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
 
     <Button
         android:id="@+id/yesButton"
@@ -37,14 +43,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:onClick="yesClick"
         android:text="כן"
-        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/noButton"
-        tools:layout_editor_absoluteY="143dp" />
+        android:layout_marginTop="52dp"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
 
     <TextView
         android:id="@+id/questionNumberView"
@@ -54,19 +58,19 @@
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="37dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/trueOrFalseText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="247dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/questionTextView" />
+        app:layout_constraintHorizontal_bias="0.488" />
 
     <TextView
         android:id="@+id/correctAnswersText"
@@ -77,11 +81,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/trueOrFalseText"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintVertical_bias="0.752" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/trueOrFalseText" />
 
 </android.support.constraint.ConstraintLayout>

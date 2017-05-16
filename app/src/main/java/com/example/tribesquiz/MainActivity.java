@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+
 import net.atomation.atomationsdk.api.IMultiSenseAtom;
 import net.atomation.atomationsdk.api.IOnButtonPressedListener;
 import net.atomation.atomationsdk.api.IOnLightSavedListener;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = getIntent();
         }
         catch(Exception ex){Log.d(TAG,ex.getMessage());}
+
 
 
 //        manager1 = MultiSenseAtomManager.getInstance(this);
