@@ -39,14 +39,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private static final String MAC1 = "48:1A:84:00:19:B1";
-    private static final String MAC2 = "48:1A:84:00:1B:08";
+//    private static final String MAC1 = "48:1A:84:00:19:B1";
+//    private static final String MAC2 = "48:1A:84:00:1B:08";
+//    private MultiSenseAtomManager manager1;
+//    private MultiSenseAtomManager manager2;
+//    private IMultiSenseAtom atom1;
+//    private IMultiSenseAtom atom2;
 
-    private MultiSenseAtomManager manager1;
-    private MultiSenseAtomManager manager2;
 
-    private IMultiSenseAtom atom1;
-    private IMultiSenseAtom atom2;
     private boolean user1Logged = false;
     private boolean user2Logged = false;
 
@@ -79,14 +79,10 @@ public class MainActivity extends AppCompatActivity {
             if ( intent != null) {
                 mConnectedThread1.write("disconnect\n");
                 mConnectedThread2.write("disconnect\n");
-
-
-
             }
         } catch (Exception ex) {
             Log.d(TAG, ex.getMessage());
         }
-
         h = new Handler() {
             public void handleMessage(android.os.Message msg) {
                 switch (msg.what) {
@@ -107,27 +103,18 @@ public class MainActivity extends AppCompatActivity {
                                 else if (sbprint.matches("USER2")) {
                                     Toast.makeText(getBaseContext(), "User 2 Connected", Toast.LENGTH_SHORT).show();
                                     user2Logged = true;
-
                                 }
 
-
                                 if (user1Logged && user2Logged) startButton.setEnabled(true);
-                                //btnInvite.setEnabled(true);
                             }
-                            //Log.d(TAG, "...String:"+ sb.toString() +  "Byte:" + msg.arg1 + "...");
                             break;
                         }
                 }
             }
         };
-
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         checkBTState();
-
         btAdapter.startDiscovery();
-      //  if (mConnectedThread1 == null || mConnectedThread2 == null) return;
-
-
 
 //        manager1 = MultiSenseAtomManager.getInstance(this);
 //        manager2 = MultiSenseAtomManager.getInstance(this);
@@ -148,13 +135,10 @@ public class MainActivity extends AppCompatActivity {
 //
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
-
         Log.d(TAG, "...onResume - try connect...");
-
         // Set up a pointer to the remote node using it's address.
         BluetoothDevice device1 = btAdapter.getRemoteDevice(address1);
         BluetoothDevice device2 = btAdapter.getRemoteDevice(address2);
@@ -191,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
                 errorExit("Fatal Error", "In onResume() and unable to close socket during connection failure" + e2.getMessage() + ".");
             }
         }
-
         try {
             btSocket2.connect();
             Log.d(TAG, "...Connection ok...");
@@ -202,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
                 errorExit("Fatal Error", "In onResume() and unable to close socket during connection failure" + e2.getMessage() + ".");
             }
         }
-
         // Create a data stream so we can talk to server.
         Log.d(TAG, "...Create Socket...");
 
@@ -219,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
         synchronized (mConnectedThread2){
             mConnectedThread2.write("connect\n");
         }
-
 //        new CountDownTimer(2200, 1000){
 //            public void onTick(long millisUntilFinished){
 //                ;
@@ -231,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
 //        }.start();
 
     }
-
     @Override
     public void onPause() {
         super.onPause();
@@ -250,8 +230,6 @@ public class MainActivity extends AppCompatActivity {
             errorExit("Fatal Error", "In onPause() and failed to close socket." + e2.getMessage() + ".");
         }
     }
-
-
     private void checkBTState() {
         // Check for Bluetooth support and then check to make sure it is turned on
         // Emulator doesn't support Bluetooth and will return null
@@ -267,12 +245,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     private void errorExit(String title, String message) {
         Toast.makeText(getBaseContext(), title + " - " + message, Toast.LENGTH_LONG).show();
         finish();
     }
-
     private class ConnectedThread extends Thread {
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
@@ -292,7 +268,6 @@ public class MainActivity extends AppCompatActivity {
             mmInStream = tmpIn;
             mmOutStream = tmpOut;
         }
-
         @Override
         public void run() {
             byte[] buffer = new byte[256];  // buffer store for the stream
@@ -309,7 +284,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
         /* Call this from the main activity to send data to the remote device */
         public void write(String message) {
             Log.d(TAG, "...Data to send: " + message + "...");
@@ -333,7 +307,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return device.createRfcommSocketToServiceRecord(MY_UUID);
     }
-
 //
 //    private void lightUp(IMultiSenseAtom atom) {
 //
