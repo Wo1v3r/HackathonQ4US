@@ -14,4 +14,11 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+
+    @Test
+    public void questionsAreCorrect() throws Exception {
+        Game game = new Game();
+        assertEquals(true , game.checkAnswer(0));
+
+    }
 }

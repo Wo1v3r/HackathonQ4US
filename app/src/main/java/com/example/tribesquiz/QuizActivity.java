@@ -24,6 +24,9 @@ public class QuizActivity extends AppCompatActivity {
     @BindView(R.id.questionNumberView) TextView questionNumberView;
     @BindView(R.id.trueOrFalseText) TextView trueOrFalseText;
     @BindView(R.id.correctAnswersText) TextView correctAnswersText;
+    @BindView(R.id.yesButton) Button yesButton;
+    @BindView(R.id.noButton) Button noButton;
+
 
     private Game game;
 
@@ -52,6 +55,8 @@ public class QuizActivity extends AppCompatActivity {
             trueOrFalseText.setText("לא נכון!");
         }
 
+            yesButton.setEnabled(false);
+            noButton.setEnabled(false);
             counter = 0;
             timer =  new Timer();
             new CountDownTimer(2200, 1000){
@@ -62,6 +67,8 @@ public class QuizActivity extends AppCompatActivity {
                     trueOrFalseText.setText("");
                     correctAnswersText.setText("תשובות נכונות "+game.getCorrectAnswers());
                     loadNextQuestion();
+                    yesButton.setEnabled(true);
+                    noButton.setEnabled(true);
                 }
             }.start();
     }
